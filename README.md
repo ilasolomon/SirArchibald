@@ -13,4 +13,4 @@ The included guideline goes over the concept and external structure of the scene
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-license: This work is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+license: This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International License.
