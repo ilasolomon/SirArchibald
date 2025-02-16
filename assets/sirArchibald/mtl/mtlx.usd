@@ -1,0 +1,2600 @@
+#usda 1.0
+(
+    defaultPrim = "__root"
+    endTimeCode = 19
+    framesPerSecond = 24
+    metersPerUnit = 0.01
+    startTimeCode = 19
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+def Xform "__root" (
+    variants = {
+        string paintjob = "blue"
+    }
+    prepend variantSets = "paintjob"
+)
+{
+    def Scope "mtl"
+    {
+        def Material "main_mtlx" (
+            prepend inherits = </__class_mtl__/main_mtlx>
+        )
+        {
+            token outputs:mtlx:displacement.connect = </__root/mtl/main_mtlx/mtlxdisplacement.outputs:out>
+            token outputs:mtlx:surface.connect = </__root/mtl/main_mtlx/mtlxstandard_surface.outputs:out>
+
+            def Shader "mtlxstandard_surface"
+            {
+                uniform token info:id = "ND_standard_surface_surfaceshader"
+                float inputs:base (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 1
+                            string ogl_diff_intensity = "1"
+                        }
+                    }
+                )
+                color3f inputs:base_color = (0.5, 0, 1) (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double3 default_value = (0.8, 0.8, 0.8)
+                            string ogl_diff = "1"
+                        }
+                    }
+                )
+                color3f inputs:base_color.connect = </__root/mtl/main_mtlx/colorSwitch.outputs:out>
+                float inputs:coat (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 0
+                            string ogl_coat_intensity = "1"
+                        }
+                    }
+                )
+                float inputs:coat.connect = </__root/mtl/main_mtlx/coatAmount_tx.outputs:out>
+                color3f inputs:coat_color.connect = </__root/mtl/main_mtlx/coatColor_tx.outputs:out>
+                float inputs:coat_roughness (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 0.1
+                            string ogl_coat_rough = "1"
+                        }
+                    }
+                )
+                float inputs:coat_roughness.connect = </__root/mtl/main_mtlx/coatRoughness_tx.outputs:out>
+                float inputs:emission (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 0
+                            string ogl_emit_intensity = "1"
+                        }
+                    }
+                )
+                float inputs:emission.connect = </__root/mtl/main_mtlx/mtlxpower2.outputs:out>
+                color3f inputs:emission_color (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double3 default_value = (1, 1, 1)
+                            string ogl_emit = "1"
+                        }
+                    }
+                )
+                color3f inputs:emission_color.connect = </__root/mtl/main_mtlx/emissionColor_tx.outputs:out>
+                float inputs:metalness (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 0
+                            string ogl_metallic = "1"
+                        }
+                    }
+                )
+                float inputs:metalness.connect = </__root/mtl/main_mtlx/metalness_tx.outputs:out>
+                vector3f inputs:normal.connect = </__root/mtl/main_mtlx/mtlxnormalmap1.outputs:out>
+                color3f inputs:opacity.connect = </__root/mtl/main_mtlx/opacity_tx.outputs:out>
+                float inputs:sheen.connect = </__root/mtl/main_mtlx/sheenAmount_tx.outputs:out>
+                color3f inputs:sheen_color.connect = </__root/mtl/main_mtlx/sheenColor_tx.outputs:out>
+                float inputs:sheen_roughness.connect = </__root/mtl/main_mtlx/sheenRoughness_tx.outputs:out>
+                float inputs:specular (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 1
+                            string ogl_spec_intensity = "1"
+                        }
+                    }
+                )
+                float inputs:specular_anisotropy.connect = </__root/mtl/main_mtlx/anisotropyAmount_tx.outputs:out>
+                color3f inputs:specular_color (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double3 default_value = (1, 1, 1)
+                            string ogl_spec = "1"
+                        }
+                    }
+                )
+                float inputs:specular_IOR (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 1.5
+                            string ogl_ior = "1"
+                        }
+                    }
+                )
+                float inputs:specular_IOR.connect = </__root/mtl/main_mtlx/mtlxpower1.outputs:out>
+                float inputs:specular_rotation.connect = </__root/mtl/main_mtlx/anisotropyAngle_tx.outputs:out>
+                float inputs:specular_roughness (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 0.2
+                            string ogl_rough = "1"
+                        }
+                    }
+                )
+                float inputs:specular_roughness.connect = </__root/mtl/main_mtlx/roughness_tx.outputs:out>
+                float inputs:subsurface.connect = </__root/mtl/main_mtlx/sssAmount_tx.outputs:out>
+                float inputs:subsurface_anisotropy = 0.25
+                color3f inputs:subsurface_color.connect = </__root/mtl/main_mtlx/colorSwitch.outputs:out>
+                float inputs:subsurface_scale = 0.05
+                float inputs:transmission (
+                    customData = {
+                        dictionary HoudiniPreviewTags = {
+                            double default_value = 0
+                            string ogl_transparency = "1"
+                        }
+                    }
+                )
+                float inputs:transmission.connect = </__root/mtl/main_mtlx/translucencyAmount_tx.outputs:out>
+                color3f inputs:transmission_color.connect = </__root/mtl/main_mtlx/translucencyColor_tx.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "colorSwitch"
+            {
+                uniform token info:id = "ND_switch_color3"
+                color3f inputs:in1.connect = </__root/mtl/main_mtlx/color_tx.outputs:out>
+                color3f inputs:in2.connect = </__root/mtl/main_mtlx/colorGreen_tx.outputs:out>
+                color3f inputs:in3.connect = </__root/mtl/main_mtlx/colorYellow_tx.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "color_tx"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default = (0, 1, 0)
+                asset inputs:file = @../tex/color_<UDIM>.exr@ (
+                    colorSpace = "ACEScg"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "mtlxtexcoord1"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                float2 outputs:out
+            }
+
+            def Shader "colorGreen_tx"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default = (0, 1, 0)
+                asset inputs:file = @../tex/var_green/color_<UDIM>.exr@ (
+                    colorSpace = "ACEScg"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "colorYellow_tx"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default = (0, 1, 0)
+                asset inputs:file = @../tex/var_yellow/color_<UDIM>.exr@ (
+                    colorSpace = "ACEScg"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "metalness_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/metalness_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "roughness_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/roughness_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "mtlxpower1"
+            {
+                uniform token info:id = "ND_power_float"
+                float inputs:in1.connect = </__root/mtl/main_mtlx/inverseIOR_tx.outputs:out>
+                float inputs:in2 = -1
+                float outputs:out
+            }
+
+            def Shader "inverseIOR_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                float inputs:default = 0.666
+                asset inputs:file = @../tex/inverseIOR_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "anisotropyAmount_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/anisotropyAmount_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "anisotropyAngle_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/anisotropyAngle_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "translucencyAmount_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/translucencyAmount_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "translucencyColor_tx"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default = (1, 1, 1)
+                asset inputs:file = @../tex/translucencyColor_<UDIM>.exr@ (
+                    colorSpace = "ACEScg"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "sssAmount_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/sssAmount_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "sheenAmount_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                float inputs:default = 1
+                asset inputs:file = @../tex/sheenAmount_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "sheenColor_tx"
+            {
+                uniform token info:id = "ND_image_color3"
+                asset inputs:file = @../tex/sheenColor_<UDIM>.exr@ (
+                    colorSpace = "ACEScg"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "sheenRoughness_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                float inputs:default = 0.3
+                asset inputs:file = @../tex/sheenRoughness_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "coatAmount_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/coatAmount_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "coatColor_tx"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default = (1, 1, 1)
+                asset inputs:file = @../tex/coatColor_<UDIM>.exr@ (
+                    colorSpace = "ACEScg"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "coatRoughness_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/coatRoughness_<UDIM>).exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "mtlxpower2"
+            {
+                uniform token info:id = "ND_power_float"
+                float inputs:in1.connect = </__root/mtl/main_mtlx/mtlxmultiply1.outputs:out>
+                float inputs:in2.connect = </__root/mtl/main_mtlx/power.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "mtlxmultiply1"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </__root/mtl/main_mtlx/mtlxadd1.outputs:out>
+                float inputs:in2.connect = </__root/mtl/main_mtlx/multi.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "mtlxadd1"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </__root/mtl/main_mtlx/emissionAmount_tx.outputs:out>
+                float inputs:in2.connect = </__root/mtl/main_mtlx/add.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "emissionAmount_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/emissionAmount_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "add"
+            {
+                uniform token info:id = "ND_constant_float"
+                float outputs:out
+            }
+
+            def Shader "multi"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 2
+                float outputs:out
+            }
+
+            def Shader "power"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 2.4
+                float outputs:out
+            }
+
+            def Shader "emissionColor_tx"
+            {
+                uniform token info:id = "ND_image_color3"
+                asset inputs:file = @../tex/emissionColor_<UDIM>.exr@ (
+                    colorSpace = "ACEScg"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                color3f outputs:out
+            }
+
+            def Shader "opacity_tx"
+            {
+                uniform token info:id = "ND_image_vector3"
+                asset inputs:file = @../tex/opacity_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                vector3f outputs:out
+            }
+
+            def Shader "mtlxnormalmap1"
+            {
+                uniform token info:id = "ND_normalmap"
+                vector3f inputs:in.connect = </__root/mtl/main_mtlx/normal_tx.outputs:out>
+                vector3f inputs:tangent.connect = </__root/mtl/main_mtlx/mtlxtangent1.outputs:out>
+                vector3f outputs:out
+            }
+
+            def Shader "normal_tx"
+            {
+                uniform token info:id = "ND_image_vector3"
+                asset inputs:file = @../tex/normal_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                vector3f outputs:out
+            }
+
+            def Shader "mtlxtangent1"
+            {
+                uniform token info:id = "ND_tangent_vector3"
+                vector3f outputs:out
+            }
+
+            def Shader "mtlxdisplacement"
+            {
+                uniform token info:id = "ND_displacement_float"
+                float inputs:displacement.connect = </__root/mtl/main_mtlx/mtlxadd2.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "mtlxadd2"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </__root/mtl/main_mtlx/heightSwitch.outputs:out>
+                float inputs:in2.connect = </__root/mtl/main_mtlx/mtlxconstant2.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "heightSwitch"
+            {
+                uniform token info:id = "ND_switch_float"
+                float inputs:in1.connect = </__root/mtl/main_mtlx/height_tx.outputs:out>
+                float inputs:in2.connect = </__root/mtl/main_mtlx/heightGreen_tx.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "height_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/height_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "heightGreen_tx"
+            {
+                uniform token info:id = "ND_image_float"
+                asset inputs:file = @../tex/var_green/height_<UDIM>.exr@ (
+                    colorSpace = "Raw"
+                )
+                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "mtlxconstant2"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = -0.5
+                float outputs:out
+            }
+        }
+
+        def Material "usdpreview_blue" (
+            prepend inherits = </__class_mtl__/usdpreview_blue>
+        )
+        {
+            token outputs:surface.connect = </__root/mtl/usdpreview_blue/usdpreviewsurface.outputs:surface>
+
+            def Shader "usdpreviewsurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_blue/usduvtexture1.outputs:rgb>
+                float inputs:metallic.connect = </__root/mtl/usdpreview_blue/usduvtexture2.outputs:r>
+                float inputs:opacityThreshold = 1
+                float inputs:roughness.connect = </__root/mtl/usdpreview_blue/usduvtexture3.outputs:r>
+                token outputs:surface
+            }
+
+            def Shader "usduvtexture1"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/color_<UDIM>.png@
+                float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                vector3f outputs:rgb
+            }
+
+            def Shader "usdprimvarreader1"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "usduvtexture2"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                token inputs:sourceColorSpace = "raw"
+                float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                float outputs:r
+            }
+
+            def Shader "usduvtexture3"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                token inputs:sourceColorSpace = "raw"
+                float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                float outputs:r
+            }
+        }
+
+        def Material "usdpreview_green" (
+            prepend inherits = </__class_mtl__/usdpreview_green>
+        )
+        {
+            token outputs:surface.connect = </__root/mtl/usdpreview_green/usdpreviewsurface.outputs:surface>
+
+            def Shader "usdpreviewsurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_green/usduvtexture1.outputs:rgb>
+                float inputs:metallic.connect = </__root/mtl/usdpreview_green/usduvtexture2.outputs:r>
+                float inputs:opacityThreshold = 1
+                float inputs:roughness.connect = </__root/mtl/usdpreview_green/usduvtexture3.outputs:r>
+                token outputs:surface
+            }
+
+            def Shader "usduvtexture1"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/var_green/color_<UDIM>.png@
+                float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                vector3f outputs:rgb
+            }
+
+            def Shader "usdprimvarreader1"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "usduvtexture2"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                token inputs:sourceColorSpace = "raw"
+                float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                float outputs:r
+            }
+
+            def Shader "usduvtexture3"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                token inputs:sourceColorSpace = "raw"
+                float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                float outputs:r
+            }
+        }
+
+        def Material "usdpreview_yellow" (
+            prepend inherits = </__class_mtl__/usdpreview_yellow>
+        )
+        {
+            token outputs:surface.connect = </__root/mtl/usdpreview_yellow/usdpreviewsurface.outputs:surface>
+
+            def Shader "usdpreviewsurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_yellow/usduvtexture1.outputs:rgb>
+                float inputs:metallic.connect = </__root/mtl/usdpreview_yellow/usduvtexture2.outputs:r>
+                float inputs:opacityThreshold = 1
+                float inputs:roughness.connect = </__root/mtl/usdpreview_yellow/usduvtexture3.outputs:r>
+                token outputs:surface
+            }
+
+            def Shader "usduvtexture1"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/var_yellow/color_<UDIM>.png@
+                float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                vector3f outputs:rgb
+            }
+
+            def Shader "usdprimvarreader1"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname = "st"
+                float2 outputs:result
+            }
+
+            def Shader "usduvtexture2"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                token inputs:sourceColorSpace = "raw"
+                float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                float outputs:r
+            }
+
+            def Shader "usduvtexture3"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                token inputs:sourceColorSpace = "raw"
+                float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                float outputs:r
+            }
+        }
+    }
+
+    over "geo" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding:full = </__root/mtl/main_mtlx>
+    }
+    variantSet "paintjob" = {
+        "blue" {
+            def Scope "mtl"
+            {
+                def Material "main_mtlx" (
+                    prepend inherits = </__class_mtl__/main_mtlx>
+                )
+                {
+                    token outputs:mtlx:displacement.connect = </__root/mtl/main_mtlx/mtlxdisplacement.outputs:out>
+                    token outputs:mtlx:surface.connect = </__root/mtl/main_mtlx/mtlxstandard_surface.outputs:out>
+
+                    def Shader "mtlxstandard_surface"
+                    {
+                        uniform token info:id = "ND_standard_surface_surfaceshader"
+                        float inputs:base (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1
+                                    string ogl_diff_intensity = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:base_color = (0.5, 0, 1) (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (0.8, 0.8, 0.8)
+                                    string ogl_diff = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:base_color.connect = </__root/mtl/main_mtlx/colorSwitch.outputs:out>
+                        float inputs:coat (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_coat_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:coat.connect = </__root/mtl/main_mtlx/coatAmount_tx.outputs:out>
+                        color3f inputs:coat_color.connect = </__root/mtl/main_mtlx/coatColor_tx.outputs:out>
+                        float inputs:coat_roughness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0.1
+                                    string ogl_coat_rough = "1"
+                                }
+                            }
+                        )
+                        float inputs:coat_roughness.connect = </__root/mtl/main_mtlx/coatRoughness_tx.outputs:out>
+                        float inputs:emission (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_emit_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:emission.connect = </__root/mtl/main_mtlx/mtlxpower2.outputs:out>
+                        color3f inputs:emission_color (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (1, 1, 1)
+                                    string ogl_emit = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:emission_color.connect = </__root/mtl/main_mtlx/emissionColor_tx.outputs:out>
+                        float inputs:metalness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_metallic = "1"
+                                }
+                            }
+                        )
+                        float inputs:metalness.connect = </__root/mtl/main_mtlx/metalness_tx.outputs:out>
+                        vector3f inputs:normal.connect = </__root/mtl/main_mtlx/mtlxnormalmap1.outputs:out>
+                        color3f inputs:opacity.connect = </__root/mtl/main_mtlx/opacity_tx.outputs:out>
+                        float inputs:sheen.connect = </__root/mtl/main_mtlx/sheenAmount_tx.outputs:out>
+                        color3f inputs:sheen_color.connect = </__root/mtl/main_mtlx/sheenColor_tx.outputs:out>
+                        float inputs:sheen_roughness.connect = </__root/mtl/main_mtlx/sheenRoughness_tx.outputs:out>
+                        float inputs:specular (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1
+                                    string ogl_spec_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_anisotropy.connect = </__root/mtl/main_mtlx/anisotropyAmount_tx.outputs:out>
+                        color3f inputs:specular_color (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (1, 1, 1)
+                                    string ogl_spec = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_IOR (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1.5
+                                    string ogl_ior = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_IOR.connect = </__root/mtl/main_mtlx/mtlxpower1.outputs:out>
+                        float inputs:specular_rotation.connect = </__root/mtl/main_mtlx/anisotropyAngle_tx.outputs:out>
+                        float inputs:specular_roughness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0.2
+                                    string ogl_rough = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_roughness.connect = </__root/mtl/main_mtlx/roughness_tx.outputs:out>
+                        float inputs:subsurface.connect = </__root/mtl/main_mtlx/sssAmount_tx.outputs:out>
+                        float inputs:subsurface_anisotropy = 0.25
+                        color3f inputs:subsurface_color.connect = </__root/mtl/main_mtlx/colorSwitch.outputs:out>
+                        float inputs:subsurface_scale = 0.05
+                        float inputs:transmission (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_transparency = "1"
+                                }
+                            }
+                        )
+                        float inputs:transmission.connect = </__root/mtl/main_mtlx/translucencyAmount_tx.outputs:out>
+                        color3f inputs:transmission_color.connect = </__root/mtl/main_mtlx/translucencyColor_tx.outputs:out>
+                        token outputs:out
+                    }
+
+                    def Shader "colorSwitch"
+                    {
+                        uniform token info:id = "ND_switch_color3"
+                        color3f inputs:in1.connect = </__root/mtl/main_mtlx/color_tx.outputs:out>
+                        color3f inputs:in2.connect = </__root/mtl/main_mtlx/colorGreen_tx.outputs:out>
+                        color3f inputs:in3.connect = </__root/mtl/main_mtlx/colorYellow_tx.outputs:out>
+                        custom float inputs:which = 0
+                        color3f outputs:out
+                    }
+
+                    def Shader "color_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "mtlxtexcoord1"
+                    {
+                        uniform token info:id = "ND_texcoord_vector2"
+                        float2 outputs:out
+                    }
+
+                    def Shader "colorGreen_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/var_green/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "colorYellow_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/var_yellow/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "metalness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/metalness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "roughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/roughness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxpower1"
+                    {
+                        uniform token info:id = "ND_power_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/inverseIOR_tx.outputs:out>
+                        float inputs:in2 = -1
+                        float outputs:out
+                    }
+
+                    def Shader "inverseIOR_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 0.666
+                        asset inputs:file = @../tex/inverseIOR_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "anisotropyAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/anisotropyAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "anisotropyAngle_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/anisotropyAngle_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "translucencyAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/translucencyAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "translucencyColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (1, 1, 1)
+                        asset inputs:file = @../tex/translucencyColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "sssAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/sssAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "sheenAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 1
+                        asset inputs:file = @../tex/sheenAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "sheenColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        asset inputs:file = @../tex/sheenColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "sheenRoughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 0.3
+                        asset inputs:file = @../tex/sheenRoughness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "coatAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/coatAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "coatColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (1, 1, 1)
+                        asset inputs:file = @../tex/coatColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "coatRoughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/coatRoughness_<UDIM>).exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxpower2"
+                    {
+                        uniform token info:id = "ND_power_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/mtlxmultiply1.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/power.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxmultiply1"
+                    {
+                        uniform token info:id = "ND_multiply_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/mtlxadd1.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/multi.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxadd1"
+                    {
+                        uniform token info:id = "ND_add_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/emissionAmount_tx.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/add.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "emissionAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/emissionAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "add"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float outputs:out
+                    }
+
+                    def Shader "multi"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = 2
+                        float outputs:out
+                    }
+
+                    def Shader "power"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = 2.4
+                        float outputs:out
+                    }
+
+                    def Shader "emissionColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        asset inputs:file = @../tex/emissionColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "opacity_tx"
+                    {
+                        uniform token info:id = "ND_image_vector3"
+                        asset inputs:file = @../tex/opacity_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxnormalmap1"
+                    {
+                        uniform token info:id = "ND_normalmap"
+                        vector3f inputs:in.connect = </__root/mtl/main_mtlx/normal_tx.outputs:out>
+                        vector3f inputs:tangent.connect = </__root/mtl/main_mtlx/mtlxtangent1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "normal_tx"
+                    {
+                        uniform token info:id = "ND_image_vector3"
+                        asset inputs:file = @../tex/normal_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxtangent1"
+                    {
+                        uniform token info:id = "ND_tangent_vector3"
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxdisplacement"
+                    {
+                        uniform token info:id = "ND_displacement_float"
+                        float inputs:displacement.connect = </__root/mtl/main_mtlx/mtlxadd2.outputs:out>
+                        token outputs:out
+                    }
+
+                    def Shader "mtlxadd2"
+                    {
+                        uniform token info:id = "ND_add_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/heightSwitch.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/mtlxconstant2.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "heightSwitch"
+                    {
+                        uniform token info:id = "ND_switch_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/height_tx.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/heightGreen_tx.outputs:out>
+                        custom float inputs:which = 0
+                        float outputs:out
+                    }
+
+                    def Shader "height_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/height_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "heightGreen_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/var_green/height_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxconstant2"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = -0.5
+                        float outputs:out
+                    }
+                }
+
+                def Material "usdpreview_blue" (
+                    prepend inherits = </__class_mtl__/usdpreview_blue>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_blue/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_blue/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_blue/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_blue/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+
+                def Material "usdpreview_green" (
+                    prepend inherits = </__class_mtl__/usdpreview_green>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_green/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_green/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_green/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_green/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/var_green/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+
+                def Material "usdpreview_yellow" (
+                    prepend inherits = </__class_mtl__/usdpreview_yellow>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_yellow/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_yellow/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_yellow/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_yellow/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/var_yellow/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+            }
+
+            over "geo" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:full = </__root/mtl/main_mtlx>
+                rel material:binding:preview = </__root/mtl/usdpreview_blue>
+            }
+
+        }
+        "green" {
+            def Scope "mtl"
+            {
+                def Material "main_mtlx" (
+                    prepend inherits = </__class_mtl__/main_mtlx>
+                )
+                {
+                    token outputs:mtlx:displacement.connect = </__root/mtl/main_mtlx/mtlxdisplacement.outputs:out>
+                    token outputs:mtlx:surface.connect = </__root/mtl/main_mtlx/mtlxstandard_surface.outputs:out>
+
+                    def Shader "mtlxstandard_surface"
+                    {
+                        uniform token info:id = "ND_standard_surface_surfaceshader"
+                        float inputs:base (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1
+                                    string ogl_diff_intensity = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:base_color = (0.5, 0, 1) (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (0.8, 0.8, 0.8)
+                                    string ogl_diff = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:base_color.connect = </__root/mtl/main_mtlx/colorSwitch.outputs:out>
+                        float inputs:coat (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_coat_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:coat.connect = </__root/mtl/main_mtlx/coatAmount_tx.outputs:out>
+                        color3f inputs:coat_color.connect = </__root/mtl/main_mtlx/coatColor_tx.outputs:out>
+                        float inputs:coat_roughness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0.1
+                                    string ogl_coat_rough = "1"
+                                }
+                            }
+                        )
+                        float inputs:coat_roughness.connect = </__root/mtl/main_mtlx/coatRoughness_tx.outputs:out>
+                        float inputs:emission (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_emit_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:emission.connect = </__root/mtl/main_mtlx/mtlxpower2.outputs:out>
+                        color3f inputs:emission_color (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (1, 1, 1)
+                                    string ogl_emit = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:emission_color.connect = </__root/mtl/main_mtlx/emissionColor_tx.outputs:out>
+                        float inputs:metalness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_metallic = "1"
+                                }
+                            }
+                        )
+                        float inputs:metalness.connect = </__root/mtl/main_mtlx/metalness_tx.outputs:out>
+                        vector3f inputs:normal.connect = </__root/mtl/main_mtlx/mtlxnormalmap1.outputs:out>
+                        color3f inputs:opacity.connect = </__root/mtl/main_mtlx/opacity_tx.outputs:out>
+                        float inputs:sheen.connect = </__root/mtl/main_mtlx/sheenAmount_tx.outputs:out>
+                        color3f inputs:sheen_color.connect = </__root/mtl/main_mtlx/sheenColor_tx.outputs:out>
+                        float inputs:sheen_roughness.connect = </__root/mtl/main_mtlx/sheenRoughness_tx.outputs:out>
+                        float inputs:specular (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1
+                                    string ogl_spec_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_anisotropy.connect = </__root/mtl/main_mtlx/anisotropyAmount_tx.outputs:out>
+                        color3f inputs:specular_color (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (1, 1, 1)
+                                    string ogl_spec = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_IOR (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1.5
+                                    string ogl_ior = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_IOR.connect = </__root/mtl/main_mtlx/mtlxpower1.outputs:out>
+                        float inputs:specular_rotation.connect = </__root/mtl/main_mtlx/anisotropyAngle_tx.outputs:out>
+                        float inputs:specular_roughness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0.2
+                                    string ogl_rough = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_roughness.connect = </__root/mtl/main_mtlx/roughness_tx.outputs:out>
+                        float inputs:subsurface.connect = </__root/mtl/main_mtlx/sssAmount_tx.outputs:out>
+                        float inputs:subsurface_anisotropy = 0.25
+                        color3f inputs:subsurface_color.connect = </__root/mtl/main_mtlx/colorSwitch.outputs:out>
+                        float inputs:subsurface_scale = 0.05
+                        float inputs:transmission (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_transparency = "1"
+                                }
+                            }
+                        )
+                        float inputs:transmission.connect = </__root/mtl/main_mtlx/translucencyAmount_tx.outputs:out>
+                        color3f inputs:transmission_color.connect = </__root/mtl/main_mtlx/translucencyColor_tx.outputs:out>
+                        token outputs:out
+                    }
+
+                    def Shader "colorSwitch"
+                    {
+                        uniform token info:id = "ND_switch_color3"
+                        color3f inputs:in1.connect = </__root/mtl/main_mtlx/color_tx.outputs:out>
+                        color3f inputs:in2.connect = </__root/mtl/main_mtlx/colorGreen_tx.outputs:out>
+                        color3f inputs:in3.connect = </__root/mtl/main_mtlx/colorYellow_tx.outputs:out>
+                        custom float inputs:which = 1
+                        color3f outputs:out
+                    }
+
+                    def Shader "color_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "mtlxtexcoord1"
+                    {
+                        uniform token info:id = "ND_texcoord_vector2"
+                        float2 outputs:out
+                    }
+
+                    def Shader "colorGreen_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/var_green/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "colorYellow_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/var_yellow/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "metalness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/metalness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "roughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/roughness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxpower1"
+                    {
+                        uniform token info:id = "ND_power_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/inverseIOR_tx.outputs:out>
+                        float inputs:in2 = -1
+                        float outputs:out
+                    }
+
+                    def Shader "inverseIOR_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 0.666
+                        asset inputs:file = @../tex/inverseIOR_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "anisotropyAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/anisotropyAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "anisotropyAngle_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/anisotropyAngle_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "translucencyAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/translucencyAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "translucencyColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (1, 1, 1)
+                        asset inputs:file = @../tex/translucencyColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "sssAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/sssAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "sheenAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 1
+                        asset inputs:file = @../tex/sheenAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "sheenColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        asset inputs:file = @../tex/sheenColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "sheenRoughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 0.3
+                        asset inputs:file = @../tex/sheenRoughness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "coatAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/coatAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "coatColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (1, 1, 1)
+                        asset inputs:file = @../tex/coatColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "coatRoughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/coatRoughness_<UDIM>).exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxpower2"
+                    {
+                        uniform token info:id = "ND_power_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/mtlxmultiply1.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/power.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxmultiply1"
+                    {
+                        uniform token info:id = "ND_multiply_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/mtlxadd1.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/multi.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxadd1"
+                    {
+                        uniform token info:id = "ND_add_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/emissionAmount_tx.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/add.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "emissionAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/emissionAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "add"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float outputs:out
+                    }
+
+                    def Shader "multi"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = 2
+                        float outputs:out
+                    }
+
+                    def Shader "power"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = 2.4
+                        float outputs:out
+                    }
+
+                    def Shader "emissionColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        asset inputs:file = @../tex/emissionColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "opacity_tx"
+                    {
+                        uniform token info:id = "ND_image_vector3"
+                        asset inputs:file = @../tex/opacity_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxnormalmap1"
+                    {
+                        uniform token info:id = "ND_normalmap"
+                        vector3f inputs:in.connect = </__root/mtl/main_mtlx/normal_tx.outputs:out>
+                        vector3f inputs:tangent.connect = </__root/mtl/main_mtlx/mtlxtangent1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "normal_tx"
+                    {
+                        uniform token info:id = "ND_image_vector3"
+                        asset inputs:file = @../tex/normal_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxtangent1"
+                    {
+                        uniform token info:id = "ND_tangent_vector3"
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxdisplacement"
+                    {
+                        uniform token info:id = "ND_displacement_float"
+                        float inputs:displacement.connect = </__root/mtl/main_mtlx/mtlxadd2.outputs:out>
+                        token outputs:out
+                    }
+
+                    def Shader "mtlxadd2"
+                    {
+                        uniform token info:id = "ND_add_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/heightSwitch.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/mtlxconstant2.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "heightSwitch"
+                    {
+                        uniform token info:id = "ND_switch_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/height_tx.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/heightGreen_tx.outputs:out>
+                        custom float inputs:which = 1
+                        float outputs:out
+                    }
+
+                    def Shader "height_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/height_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "heightGreen_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/var_green/height_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxconstant2"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = -0.5
+                        float outputs:out
+                    }
+                }
+
+                def Material "usdpreview_blue" (
+                    prepend inherits = </__class_mtl__/usdpreview_blue>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_blue/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_blue/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_blue/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_blue/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+
+                def Material "usdpreview_green" (
+                    prepend inherits = </__class_mtl__/usdpreview_green>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_green/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_green/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_green/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_green/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/var_green/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+
+                def Material "usdpreview_yellow" (
+                    prepend inherits = </__class_mtl__/usdpreview_yellow>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_yellow/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_yellow/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_yellow/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_yellow/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/var_yellow/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+            }
+
+            over "geo" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:full = </__root/mtl/main_mtlx>
+                rel material:binding:preview = </__root/mtl/usdpreview_green>
+            }
+
+        }
+        "yellow" {
+            def Scope "mtl"
+            {
+                def Material "main_mtlx" (
+                    prepend inherits = </__class_mtl__/main_mtlx>
+                )
+                {
+                    token outputs:mtlx:displacement.connect = </__root/mtl/main_mtlx/mtlxdisplacement.outputs:out>
+                    token outputs:mtlx:surface.connect = </__root/mtl/main_mtlx/mtlxstandard_surface.outputs:out>
+
+                    def Shader "mtlxstandard_surface"
+                    {
+                        uniform token info:id = "ND_standard_surface_surfaceshader"
+                        float inputs:base (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1
+                                    string ogl_diff_intensity = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:base_color = (0.5, 0, 1) (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (0.8, 0.8, 0.8)
+                                    string ogl_diff = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:base_color.connect = </__root/mtl/main_mtlx/colorSwitch.outputs:out>
+                        float inputs:coat (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_coat_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:coat.connect = </__root/mtl/main_mtlx/coatAmount_tx.outputs:out>
+                        color3f inputs:coat_color.connect = </__root/mtl/main_mtlx/coatColor_tx.outputs:out>
+                        float inputs:coat_roughness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0.1
+                                    string ogl_coat_rough = "1"
+                                }
+                            }
+                        )
+                        float inputs:coat_roughness.connect = </__root/mtl/main_mtlx/coatRoughness_tx.outputs:out>
+                        float inputs:emission (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_emit_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:emission.connect = </__root/mtl/main_mtlx/mtlxpower2.outputs:out>
+                        color3f inputs:emission_color (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (1, 1, 1)
+                                    string ogl_emit = "1"
+                                }
+                            }
+                        )
+                        color3f inputs:emission_color.connect = </__root/mtl/main_mtlx/emissionColor_tx.outputs:out>
+                        float inputs:metalness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_metallic = "1"
+                                }
+                            }
+                        )
+                        float inputs:metalness.connect = </__root/mtl/main_mtlx/metalness_tx.outputs:out>
+                        vector3f inputs:normal.connect = </__root/mtl/main_mtlx/mtlxnormalmap1.outputs:out>
+                        color3f inputs:opacity.connect = </__root/mtl/main_mtlx/opacity_tx.outputs:out>
+                        float inputs:sheen.connect = </__root/mtl/main_mtlx/sheenAmount_tx.outputs:out>
+                        color3f inputs:sheen_color.connect = </__root/mtl/main_mtlx/sheenColor_tx.outputs:out>
+                        float inputs:sheen_roughness.connect = </__root/mtl/main_mtlx/sheenRoughness_tx.outputs:out>
+                        float inputs:specular (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1
+                                    string ogl_spec_intensity = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_anisotropy.connect = </__root/mtl/main_mtlx/anisotropyAmount_tx.outputs:out>
+                        color3f inputs:specular_color (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double3 default_value = (1, 1, 1)
+                                    string ogl_spec = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_IOR (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 1.5
+                                    string ogl_ior = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_IOR.connect = </__root/mtl/main_mtlx/mtlxpower1.outputs:out>
+                        float inputs:specular_rotation.connect = </__root/mtl/main_mtlx/anisotropyAngle_tx.outputs:out>
+                        float inputs:specular_roughness (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0.2
+                                    string ogl_rough = "1"
+                                }
+                            }
+                        )
+                        float inputs:specular_roughness.connect = </__root/mtl/main_mtlx/roughness_tx.outputs:out>
+                        float inputs:subsurface.connect = </__root/mtl/main_mtlx/sssAmount_tx.outputs:out>
+                        float inputs:subsurface_anisotropy = 0.25
+                        color3f inputs:subsurface_color.connect = </__root/mtl/main_mtlx/colorSwitch.outputs:out>
+                        float inputs:subsurface_scale = 0.05
+                        float inputs:transmission (
+                            customData = {
+                                dictionary HoudiniPreviewTags = {
+                                    double default_value = 0
+                                    string ogl_transparency = "1"
+                                }
+                            }
+                        )
+                        float inputs:transmission.connect = </__root/mtl/main_mtlx/translucencyAmount_tx.outputs:out>
+                        color3f inputs:transmission_color.connect = </__root/mtl/main_mtlx/translucencyColor_tx.outputs:out>
+                        token outputs:out
+                    }
+
+                    def Shader "colorSwitch"
+                    {
+                        uniform token info:id = "ND_switch_color3"
+                        color3f inputs:in1.connect = </__root/mtl/main_mtlx/color_tx.outputs:out>
+                        color3f inputs:in2.connect = </__root/mtl/main_mtlx/colorGreen_tx.outputs:out>
+                        color3f inputs:in3.connect = </__root/mtl/main_mtlx/colorYellow_tx.outputs:out>
+                        custom float inputs:which = 2
+                        color3f outputs:out
+                    }
+
+                    def Shader "color_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "mtlxtexcoord1"
+                    {
+                        uniform token info:id = "ND_texcoord_vector2"
+                        float2 outputs:out
+                    }
+
+                    def Shader "colorGreen_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/var_green/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "colorYellow_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (0, 1, 0)
+                        asset inputs:file = @../tex/var_yellow/color_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "metalness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/metalness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "roughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/roughness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxpower1"
+                    {
+                        uniform token info:id = "ND_power_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/inverseIOR_tx.outputs:out>
+                        float inputs:in2 = -1
+                        float outputs:out
+                    }
+
+                    def Shader "inverseIOR_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 0.666
+                        asset inputs:file = @../tex/inverseIOR_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "anisotropyAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/anisotropyAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "anisotropyAngle_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/anisotropyAngle_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "translucencyAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/translucencyAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "translucencyColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (1, 1, 1)
+                        asset inputs:file = @../tex/translucencyColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "sssAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/sssAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "sheenAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 1
+                        asset inputs:file = @../tex/sheenAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "sheenColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        asset inputs:file = @../tex/sheenColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "sheenRoughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        float inputs:default = 0.3
+                        asset inputs:file = @../tex/sheenRoughness_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "coatAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/coatAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "coatColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        color3f inputs:default = (1, 1, 1)
+                        asset inputs:file = @../tex/coatColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "coatRoughness_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/coatRoughness_<UDIM>).exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxpower2"
+                    {
+                        uniform token info:id = "ND_power_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/mtlxmultiply1.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/power.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxmultiply1"
+                    {
+                        uniform token info:id = "ND_multiply_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/mtlxadd1.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/multi.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxadd1"
+                    {
+                        uniform token info:id = "ND_add_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/emissionAmount_tx.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/add.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "emissionAmount_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/emissionAmount_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "add"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float outputs:out
+                    }
+
+                    def Shader "multi"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = 2
+                        float outputs:out
+                    }
+
+                    def Shader "power"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = 2.4
+                        float outputs:out
+                    }
+
+                    def Shader "emissionColor_tx"
+                    {
+                        uniform token info:id = "ND_image_color3"
+                        asset inputs:file = @../tex/emissionColor_<UDIM>.exr@ (
+                            colorSpace = "ACEScg"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        color3f outputs:out
+                    }
+
+                    def Shader "opacity_tx"
+                    {
+                        uniform token info:id = "ND_image_vector3"
+                        asset inputs:file = @../tex/opacity_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxnormalmap1"
+                    {
+                        uniform token info:id = "ND_normalmap"
+                        vector3f inputs:in.connect = </__root/mtl/main_mtlx/normal_tx.outputs:out>
+                        vector3f inputs:tangent.connect = </__root/mtl/main_mtlx/mtlxtangent1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "normal_tx"
+                    {
+                        uniform token info:id = "ND_image_vector3"
+                        asset inputs:file = @../tex/normal_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxtangent1"
+                    {
+                        uniform token info:id = "ND_tangent_vector3"
+                        vector3f outputs:out
+                    }
+
+                    def Shader "mtlxdisplacement"
+                    {
+                        uniform token info:id = "ND_displacement_float"
+                        float inputs:displacement.connect = </__root/mtl/main_mtlx/mtlxadd2.outputs:out>
+                        token outputs:out
+                    }
+
+                    def Shader "mtlxadd2"
+                    {
+                        uniform token info:id = "ND_add_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/heightSwitch.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/mtlxconstant2.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "heightSwitch"
+                    {
+                        uniform token info:id = "ND_switch_float"
+                        float inputs:in1.connect = </__root/mtl/main_mtlx/height_tx.outputs:out>
+                        float inputs:in2.connect = </__root/mtl/main_mtlx/heightGreen_tx.outputs:out>
+                        custom float inputs:which = 0
+                        float outputs:out
+                    }
+
+                    def Shader "height_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/height_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "heightGreen_tx"
+                    {
+                        uniform token info:id = "ND_image_float"
+                        asset inputs:file = @../tex/var_green/height_<UDIM>.exr@ (
+                            colorSpace = "Raw"
+                        )
+                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
+                        float outputs:out
+                    }
+
+                    def Shader "mtlxconstant2"
+                    {
+                        uniform token info:id = "ND_constant_float"
+                        float inputs:value = -0.5
+                        float outputs:out
+                    }
+                }
+
+                def Material "usdpreview_blue" (
+                    prepend inherits = </__class_mtl__/usdpreview_blue>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_blue/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_blue/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_blue/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_blue/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+
+                def Material "usdpreview_green" (
+                    prepend inherits = </__class_mtl__/usdpreview_green>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_green/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_green/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_green/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_green/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/var_green/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+
+                def Material "usdpreview_yellow" (
+                    prepend inherits = </__class_mtl__/usdpreview_yellow>
+                )
+                {
+                    token outputs:surface.connect = </__root/mtl/usdpreview_yellow/usdpreviewsurface.outputs:surface>
+
+                    def Shader "usdpreviewsurface"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor.connect = </__root/mtl/usdpreview_yellow/usduvtexture1.outputs:rgb>
+                        float inputs:metallic.connect = </__root/mtl/usdpreview_yellow/usduvtexture2.outputs:r>
+                        float inputs:opacityThreshold = 1
+                        float inputs:roughness.connect = </__root/mtl/usdpreview_yellow/usduvtexture3.outputs:r>
+                        token outputs:surface
+                    }
+
+                    def Shader "usduvtexture1"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/var_yellow/color_<UDIM>.png@
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        vector3f outputs:rgb
+                    }
+
+                    def Shader "usdprimvarreader1"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        string inputs:varname = "st"
+                        float2 outputs:result
+                    }
+
+                    def Shader "usduvtexture2"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+
+                    def Shader "usduvtexture3"
+                    {
+                        uniform token info:id = "UsdUVTexture"
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        token inputs:sourceColorSpace = "raw"
+                        float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
+                        float outputs:r
+                    }
+                }
+            }
+
+            over "geo" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding:full = </__root/mtl/main_mtlx>
+                rel material:binding:preview = </__root/mtl/usdpreview_yellow>
+            }
+
+        }
+    }
+}
+

@@ -1,0 +1,26 @@
+#usda 1.0
+(
+    endTimeCode = 1288
+    framesPerSecond = 24
+    metersPerUnit = 0.01
+    startTimeCode = 1001
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+	subLayers = [
+        @./lo/cam/camera01.usd@,
+        @./anm/treadmill01.usd@,
+        @./anm/sirArchibald01.usd@,
+        @./lgt/scenario01.usd@
+    ]
+)
+def "sirArchibald01" (
+    prepend references = @./assets/sirArchibald/assembly.usd@
+)
+{
+}
+def "treadmill01" (
+    prepend references = @./assets/treadmill/assembly.usd@
+)
+{
+}
+
