@@ -1,0 +1,8 @@
+Sir Archibald Goes to Town - An openUSD Toy!
+
+This project began as a personal learning sandbox, where I explored the vast possibilities of Universal Scene Description (openUSD) for creating animated CGI scenes. While there is an abundance of high-quality openUSD sample scenes available online, I noticed that many of them tend to be either overly complex and heavy (such as the AnimalLogic Lab and nVidia Attic examples) or excessively simple and specialized. Finding examples with a moderate amount of data, inclusive of the most common functions, can be challenging.
+Motivated by this gap, I designed this project to serve as a middle-ground reference for those looking to explore openUSD in a more approachable yet versatile context. By offering a balanced composition of data and functions, this project aims to provide a valuable learning resource for individuals seeking to deepen their understanding of openUSD and its applications.
+The project demonstrates one of the many ways a openUSD stage (i.e., asset or shot) can be composed, following a structure that is similar to the guideline from the USD Working Group but seasoned by personal preferences. The project is designed for a single scene, with a focus on portability, ease of understanding, and ease of modification, making it an excellent resource for those new to openUSD or the ones who are looking for an openUSD toy to play with in their DCC of choice.
+This guideline goes over the concept and external structure of the scene without getting into the technical details and the internal structure of the components.
+
+license: This work is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
