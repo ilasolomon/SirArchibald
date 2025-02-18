@@ -3,9 +3,9 @@
     defaultPrim = "camera01"
     doc = """Generated from Composed Stage of root layer 
 """
-    endTimeCode = 1001
+    endTimeCode = 1289
     framesPerSecond = 24
-    metersPerUnit = 1
+    metersPerUnit = 0.01
     startTimeCode = 1001
     timeCodesPerSecond = 24
     upAxis = "Y"
