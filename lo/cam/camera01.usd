@@ -6,7 +6,7 @@
     endTimeCode = 1289
     framesPerSecond = 24
     metersPerUnit = 0.01
-    startTimeCode = 1001
+    startTimeCode = 1000
     timeCodesPerSecond = 24
     upAxis = "Y"
 )
