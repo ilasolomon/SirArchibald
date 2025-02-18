@@ -3,7 +3,7 @@
     defaultPrim = "__root"
     endTimeCode = 1
     framesPerSecond = 24
-    metersPerUnit = 1
+    metersPerUnit = 0.1
     startTimeCode = 1
     subLayers = [
         @./mtl/mtlx.usd@,
