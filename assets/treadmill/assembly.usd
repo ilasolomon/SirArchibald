@@ -1,10 +1,10 @@
 #usda 1.0
 (
     defaultPrim = "__root"
-    endTimeCode = 1001
+    endTimeCode = 1
     framesPerSecond = 24
     metersPerUnit = 1
-    startTimeCode = 1001
+    startTimeCode = 1
     subLayers = [
         @./mtl/mtlx.usd@,
         @./geo/geo.usd@
