@@ -1,5 +1,6 @@
 #usda 1.0
 (
+    defaultPrim = "__root"
     endTimeCode = 1
     framesPerSecond = 24
     metersPerUnit = 0.01
@@ -8,7 +9,7 @@
     upAxis = "Y"
 )
 
-over "treadmill"
+def Xform "__root"
 {
     def Scope "mtl"
     {
@@ -16,9 +17,8 @@ over "treadmill"
             prepend inherits = </__class_mtl__/checker_mtlx>
         )
         {
-            token outputs:mtlx:displacement.connect = </treadmill/mtl/checker_mtlx/mtlxdisplacement.outputs:out>
-            token outputs:mtlx:surface.connect = </treadmill/mtl/checker_mtlx/mtlxstandard_surface.outputs:out>
-            token outputs:surface.connect = </treadmill/mtl/checker_mtlx/mtlxstandard_preview.outputs:surface>
+            token outputs:mtlx:surface.connect = </__root/mtl/checker_mtlx/mtlxstandard_surface.outputs:out>
+            token outputs:surface.connect = </__root/mtl/checker_mtlx/mtlxstandard_preview.outputs:surface>
 
             def Shader "mtlxstandard_surface"
             {
@@ -39,7 +39,7 @@ over "treadmill"
                         }
                     }
                 )
-                color3f inputs:base_color.connect = </treadmill/mtl/checker_mtlx/mtlxcheckerboard1.outputs:out>
+                color3f inputs:base_color.connect = </__root/mtl/checker_mtlx/mtlxcheckerboard1.outputs:out>
                 float inputs:coat (
                     customData = {
                         dictionary HoudiniPreviewTags = {
@@ -128,21 +128,16 @@ over "treadmill"
                 uniform token info:id = "ND_checkerboard_color3"
                 color3f inputs:color1 = (0.2, 0.2, 0.2)
                 color3f inputs:color2 = (0.1, 0.1, 0.1)
-                float2 inputs:texcoord.connect = </treadmill/mtl/checker_mtlx/mtlxtexcoord1.outputs:out>
+                float2 inputs:texcoord.connect = </__root/mtl/checker_mtlx/mtlxgeompropvalue1.outputs:out>
                 float2 inputs:uvtiling = (16, 16)
                 color3f outputs:out
             }
 
-            def Shader "mtlxtexcoord1"
+            def Shader "mtlxgeompropvalue1"
             {
-                uniform token info:id = "ND_texcoord_vector2"
+                uniform token info:id = "ND_geompropvalue_vector2"
+                string inputs:geomprop = "st"
                 float2 outputs:out
-            }
-
-            def Shader "mtlxdisplacement"
-            {
-                uniform token info:id = "ND_displacement_float"
-                token outputs:out
             }
 
             def Shader "mtlxstandard_preview" (
@@ -168,7 +163,7 @@ over "treadmill"
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
-            rel material:binding = </treadmill/mtl/checker_mtlx>
+            rel material:binding = </__root/mtl/checker_mtlx>
         }
     }
 }

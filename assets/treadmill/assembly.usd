@@ -5,11 +5,12 @@
     framesPerSecond = 24
     metersPerUnit = 0.01
     startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
     subLayers = [
         @./mtl/mtlx.usd@,
         @./geo/geo.usd@
     ]
-    timeCodesPerSecond = 24
-    upAxis = "Y"
+    
 )
 
