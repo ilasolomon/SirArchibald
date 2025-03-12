@@ -1,17 +1,17 @@
 #usda 1.0
 (
     defaultPrim = "__root"
-    endTimeCode = 1
+    endTimeCode = 16
     framesPerSecond = 24
-    metersPerUnit = 0.01
-    startTimeCode = 1
+    metersPerUnit = 1
+    startTimeCode = 16
     timeCodesPerSecond = 24
     upAxis = "Y"
 )
 
 def Xform "__root" (
     variants = {
-        string paintjob = "blue"
+        string paintjob = "yellow"
     }
     prepend variantSets = "paintjob"
 )
@@ -165,14 +165,7 @@ def Xform "__root" (
                 asset inputs:file = @../tex/color_<UDIM>.exr@ (
                     colorSpace = "ACEScg"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 color3f outputs:out
-            }
-
-            def Shader "mtlxtexcoord1"
-            {
-                uniform token info:id = "ND_texcoord_vector2"
-                float2 outputs:out
             }
 
             def Shader "colorGreen_tx"
@@ -182,7 +175,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/var_green/color_<UDIM>.exr@ (
                     colorSpace = "ACEScg"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 color3f outputs:out
             }
 
@@ -193,7 +185,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/var_yellow/color_<UDIM>.exr@ (
                     colorSpace = "ACEScg"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 color3f outputs:out
             }
 
@@ -203,7 +194,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/metalness_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -213,7 +203,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/roughness_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -232,7 +221,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/inverseIOR_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -242,7 +230,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/anisotropyAmount_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -252,7 +239,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/anisotropyAngle_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -262,7 +248,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/translucencyAmount_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -273,7 +258,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/translucencyColor_<UDIM>.exr@ (
                     colorSpace = "ACEScg"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 color3f outputs:out
             }
 
@@ -283,7 +267,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/sssAmount_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -294,7 +277,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/sheenAmount_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -304,7 +286,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/sheenColor_<UDIM>.exr@ (
                     colorSpace = "ACEScg"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 color3f outputs:out
             }
 
@@ -315,7 +296,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/sheenRoughness_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -325,7 +305,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/coatAmount_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -336,17 +315,15 @@ def Xform "__root" (
                 asset inputs:file = @../tex/coatColor_<UDIM>.exr@ (
                     colorSpace = "ACEScg"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 color3f outputs:out
             }
 
             def Shader "coatRoughness_tx"
             {
                 uniform token info:id = "ND_image_float"
-                asset inputs:file = @../tex/coatRoughness_<UDIM>).exr@ (
+                asset inputs:file = @../tex/coatRoughness_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -380,7 +357,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/emissionAmount_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -410,7 +386,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/emissionColor_<UDIM>.exr@ (
                     colorSpace = "ACEScg"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 color3f outputs:out
             }
 
@@ -420,7 +395,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/opacity_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 vector3f outputs:out
             }
 
@@ -428,7 +402,6 @@ def Xform "__root" (
             {
                 uniform token info:id = "ND_normalmap"
                 vector3f inputs:in.connect = </__root/mtl/main_mtlx/normal_tx.outputs:out>
-                vector3f inputs:tangent.connect = </__root/mtl/main_mtlx/mtlxtangent1.outputs:out>
                 vector3f outputs:out
             }
 
@@ -438,13 +411,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/normal_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
-                vector3f outputs:out
-            }
-
-            def Shader "mtlxtangent1"
-            {
-                uniform token info:id = "ND_tangent_vector3"
                 vector3f outputs:out
             }
 
@@ -477,7 +443,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/height_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -487,7 +452,6 @@ def Xform "__root" (
                 asset inputs:file = @../tex/var_green/height_<UDIM>.exr@ (
                     colorSpace = "Raw"
                 )
-                float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                 float outputs:out
             }
 
@@ -518,7 +482,7 @@ def Xform "__root" (
             def Shader "usduvtexture1"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/color_<UDIM>.png@
+                asset inputs:file = @../../Texturing_preview/master/color_<UDIM>.png@
                 float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                 vector3f outputs:rgb
             }
@@ -533,7 +497,7 @@ def Xform "__root" (
             def Shader "usduvtexture2"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -542,7 +506,7 @@ def Xform "__root" (
             def Shader "usduvtexture3"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -568,7 +532,7 @@ def Xform "__root" (
             def Shader "usduvtexture1"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/var_green/color_<UDIM>.png@
+                asset inputs:file = @../../Texturing_green_preview/v0001/color_<UDIM>.png@
                 float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                 vector3f outputs:rgb
             }
@@ -583,7 +547,7 @@ def Xform "__root" (
             def Shader "usduvtexture2"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -592,7 +556,7 @@ def Xform "__root" (
             def Shader "usduvtexture3"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -618,7 +582,7 @@ def Xform "__root" (
             def Shader "usduvtexture1"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/var_yellow/color_<UDIM>.png@
+                asset inputs:file = @../../Texturing_yellow_preview/v0001/color_<UDIM>.png@
                 float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                 vector3f outputs:rgb
             }
@@ -633,7 +597,7 @@ def Xform "__root" (
             def Shader "usduvtexture2"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -642,7 +606,7 @@ def Xform "__root" (
             def Shader "usduvtexture3"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -808,14 +772,7 @@ def Xform "__root" (
                         asset inputs:file = @../tex/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
-                    }
-
-                    def Shader "mtlxtexcoord1"
-                    {
-                        uniform token info:id = "ND_texcoord_vector2"
-                        float2 outputs:out
                     }
 
                     def Shader "colorGreen_tx"
@@ -825,7 +782,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_green/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -836,7 +792,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_yellow/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -846,7 +801,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/metalness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -856,7 +810,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/roughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -875,7 +828,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/inverseIOR_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -885,7 +837,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/anisotropyAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -895,7 +846,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/anisotropyAngle_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -905,7 +855,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/translucencyAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -916,7 +865,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/translucencyColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -926,7 +874,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sssAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -937,7 +884,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -947,7 +893,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -958,7 +903,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenRoughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -968,7 +912,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/coatAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -979,17 +922,15 @@ def Xform "__root" (
                         asset inputs:file = @../tex/coatColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
                     def Shader "coatRoughness_tx"
                     {
                         uniform token info:id = "ND_image_float"
-                        asset inputs:file = @../tex/coatRoughness_<UDIM>).exr@ (
+                        asset inputs:file = @../tex/coatRoughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1023,7 +964,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/emissionAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1053,7 +993,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/emissionColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -1063,7 +1002,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/opacity_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         vector3f outputs:out
                     }
 
@@ -1071,7 +1009,6 @@ def Xform "__root" (
                     {
                         uniform token info:id = "ND_normalmap"
                         vector3f inputs:in.connect = </__root/mtl/main_mtlx/normal_tx.outputs:out>
-                        vector3f inputs:tangent.connect = </__root/mtl/main_mtlx/mtlxtangent1.outputs:out>
                         vector3f outputs:out
                     }
 
@@ -1081,13 +1018,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/normal_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
-                        vector3f outputs:out
-                    }
-
-                    def Shader "mtlxtangent1"
-                    {
-                        uniform token info:id = "ND_tangent_vector3"
                         vector3f outputs:out
                     }
 
@@ -1121,7 +1051,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/height_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1131,7 +1060,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_green/height_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1162,7 +1090,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1177,7 +1105,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1186,7 +1114,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1212,7 +1140,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/var_green/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_green_preview/v0001/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1227,7 +1155,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1236,7 +1164,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1262,7 +1190,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/var_yellow/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_yellow_preview/v0001/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1277,7 +1205,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1286,7 +1214,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1454,14 +1382,7 @@ def Xform "__root" (
                         asset inputs:file = @../tex/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
-                    }
-
-                    def Shader "mtlxtexcoord1"
-                    {
-                        uniform token info:id = "ND_texcoord_vector2"
-                        float2 outputs:out
                     }
 
                     def Shader "colorGreen_tx"
@@ -1471,7 +1392,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_green/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -1482,7 +1402,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_yellow/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -1492,7 +1411,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/metalness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1502,7 +1420,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/roughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1521,7 +1438,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/inverseIOR_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1531,7 +1447,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/anisotropyAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1541,7 +1456,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/anisotropyAngle_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1551,7 +1465,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/translucencyAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1562,7 +1475,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/translucencyColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -1572,7 +1484,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sssAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1583,7 +1494,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1593,7 +1503,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -1604,7 +1513,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenRoughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1614,7 +1522,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/coatAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1625,17 +1532,15 @@ def Xform "__root" (
                         asset inputs:file = @../tex/coatColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
                     def Shader "coatRoughness_tx"
                     {
                         uniform token info:id = "ND_image_float"
-                        asset inputs:file = @../tex/coatRoughness_<UDIM>).exr@ (
+                        asset inputs:file = @../tex/coatRoughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1669,7 +1574,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/emissionAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1699,7 +1603,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/emissionColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -1709,7 +1612,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/opacity_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         vector3f outputs:out
                     }
 
@@ -1717,7 +1619,6 @@ def Xform "__root" (
                     {
                         uniform token info:id = "ND_normalmap"
                         vector3f inputs:in.connect = </__root/mtl/main_mtlx/normal_tx.outputs:out>
-                        vector3f inputs:tangent.connect = </__root/mtl/main_mtlx/mtlxtangent1.outputs:out>
                         vector3f outputs:out
                     }
 
@@ -1727,13 +1628,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/normal_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
-                        vector3f outputs:out
-                    }
-
-                    def Shader "mtlxtangent1"
-                    {
-                        uniform token info:id = "ND_tangent_vector3"
                         vector3f outputs:out
                     }
 
@@ -1767,7 +1661,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/height_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1777,7 +1670,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_green/height_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -1808,7 +1700,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1823,7 +1715,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1832,7 +1724,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1858,7 +1750,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/var_green/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_green_preview/v0001/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1873,7 +1765,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1882,7 +1774,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1908,7 +1800,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/var_yellow/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_yellow_preview/v0001/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1923,7 +1815,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1932,7 +1824,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2100,14 +1992,7 @@ def Xform "__root" (
                         asset inputs:file = @../tex/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
-                    }
-
-                    def Shader "mtlxtexcoord1"
-                    {
-                        uniform token info:id = "ND_texcoord_vector2"
-                        float2 outputs:out
                     }
 
                     def Shader "colorGreen_tx"
@@ -2117,7 +2002,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_green/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -2128,7 +2012,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_yellow/color_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -2138,7 +2021,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/metalness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2148,7 +2030,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/roughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2167,7 +2048,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/inverseIOR_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2177,7 +2057,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/anisotropyAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2187,7 +2066,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/anisotropyAngle_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2197,7 +2075,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/translucencyAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2208,7 +2085,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/translucencyColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -2218,7 +2094,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sssAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2229,7 +2104,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2239,7 +2113,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -2250,7 +2123,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/sheenRoughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2260,7 +2132,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/coatAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2271,17 +2142,15 @@ def Xform "__root" (
                         asset inputs:file = @../tex/coatColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
                     def Shader "coatRoughness_tx"
                     {
                         uniform token info:id = "ND_image_float"
-                        asset inputs:file = @../tex/coatRoughness_<UDIM>).exr@ (
+                        asset inputs:file = @../tex/coatRoughness_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2315,7 +2184,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/emissionAmount_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2345,7 +2213,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/emissionColor_<UDIM>.exr@ (
                             colorSpace = "ACEScg"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         color3f outputs:out
                     }
 
@@ -2355,7 +2222,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/opacity_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         vector3f outputs:out
                     }
 
@@ -2363,7 +2229,6 @@ def Xform "__root" (
                     {
                         uniform token info:id = "ND_normalmap"
                         vector3f inputs:in.connect = </__root/mtl/main_mtlx/normal_tx.outputs:out>
-                        vector3f inputs:tangent.connect = </__root/mtl/main_mtlx/mtlxtangent1.outputs:out>
                         vector3f outputs:out
                     }
 
@@ -2373,13 +2238,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/normal_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
-                        vector3f outputs:out
-                    }
-
-                    def Shader "mtlxtangent1"
-                    {
-                        uniform token info:id = "ND_tangent_vector3"
                         vector3f outputs:out
                     }
 
@@ -2413,7 +2271,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/height_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2423,7 +2280,6 @@ def Xform "__root" (
                         asset inputs:file = @../tex/var_green/height_<UDIM>.exr@ (
                             colorSpace = "Raw"
                         )
-                        float2 inputs:texcoord.connect = </__root/mtl/main_mtlx/mtlxtexcoord1.outputs:out>
                         float outputs:out
                     }
 
@@ -2454,7 +2310,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -2469,7 +2325,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2478,7 +2334,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2504,7 +2360,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/var_green/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_green_preview/v0001/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -2519,7 +2375,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2528,7 +2384,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2554,7 +2410,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/var_yellow/color_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_yellow_preview/v0001/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -2569,7 +2425,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2578,7 +2434,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
+                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
