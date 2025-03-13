@@ -482,7 +482,7 @@ def Xform "__root" (
             def Shader "usduvtexture1"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_preview/master/color_<UDIM>.png@
+                asset inputs:file = @../tex/preview/color_<UDIM>.png@
                 float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                 vector3f outputs:rgb
             }
@@ -497,7 +497,7 @@ def Xform "__root" (
             def Shader "usduvtexture2"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -506,7 +506,7 @@ def Xform "__root" (
             def Shader "usduvtexture3"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -532,7 +532,7 @@ def Xform "__root" (
             def Shader "usduvtexture1"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_green_preview/v0001/color_<UDIM>.png@
+                asset inputs:file = @../tex/var_green/color_<UDIM>.png@
                 float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                 vector3f outputs:rgb
             }
@@ -547,7 +547,7 @@ def Xform "__root" (
             def Shader "usduvtexture2"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -556,7 +556,7 @@ def Xform "__root" (
             def Shader "usduvtexture3"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -582,7 +582,7 @@ def Xform "__root" (
             def Shader "usduvtexture1"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_yellow_preview/v0001/color_<UDIM>.png@
+                asset inputs:file = @../tex/var_yellow/color_<UDIM>.png@
                 float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                 vector3f outputs:rgb
             }
@@ -597,7 +597,7 @@ def Xform "__root" (
             def Shader "usduvtexture2"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -606,7 +606,7 @@ def Xform "__root" (
             def Shader "usduvtexture3"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                 token inputs:sourceColorSpace = "raw"
                 float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                 float outputs:r
@@ -1090,7 +1090,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/color_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1105,7 +1105,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1114,7 +1114,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1140,7 +1140,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_green_preview/v0001/color_<UDIM>.png@
+                        asset inputs:file = @../tex/var_green/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1155,7 +1155,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1164,7 +1164,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1190,7 +1190,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_yellow_preview/v0001/color_<UDIM>.png@
+                        asset inputs:file = @../tex/var_yellow/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1205,7 +1205,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1214,7 +1214,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1700,7 +1700,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/color_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1715,7 +1715,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1724,7 +1724,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1750,7 +1750,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_green_preview/v0001/color_<UDIM>.png@
+                        asset inputs:file = @../tex/var_green/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1765,7 +1765,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1774,7 +1774,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1800,7 +1800,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_yellow_preview/v0001/color_<UDIM>.png@
+                        asset inputs:file = @../tex/var_yellow/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -1815,7 +1815,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -1824,7 +1824,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2310,7 +2310,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/color_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -2325,7 +2325,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2334,7 +2334,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_blue/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2360,7 +2360,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_green_preview/v0001/color_<UDIM>.png@
+                        asset inputs:file = @../tex/var_green/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -2375,7 +2375,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2384,7 +2384,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_green/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2410,7 +2410,7 @@ def Xform "__root" (
                     def Shader "usduvtexture1"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_yellow_preview/v0001/color_<UDIM>.png@
+                        asset inputs:file = @../tex/var_yellow/color_<UDIM>.png@
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         vector3f outputs:rgb
                     }
@@ -2425,7 +2425,7 @@ def Xform "__root" (
                     def Shader "usduvtexture2"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/metalness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/metalness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
@@ -2434,7 +2434,7 @@ def Xform "__root" (
                     def Shader "usduvtexture3"
                     {
                         uniform token info:id = "UsdUVTexture"
-                        asset inputs:file = @../../Texturing_preview/master/roughness_<UDIM>.png@
+                        asset inputs:file = @../tex/preview/roughness_<UDIM>.png@
                         token inputs:sourceColorSpace = "raw"
                         float2 inputs:st.connect = </__root/mtl/usdpreview_yellow/usdprimvarreader1.outputs:result>
                         float outputs:r
