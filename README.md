@@ -1,10 +1,10 @@
 ![Banner](SirArchibald_banner_1.png)
 
 
-Sir Archibald Goes to Town - An openUSD Toy!
+# Sir Archibald Goes to Town - An openUSD Toy!
 
 -------------------------------------------------------------------------------------------------------------------------------------
-While there is an abundance of high-quality openUSD sample scenes available online, many of them tend to be either overly complex and heavy (such as the AnimalLogic Lab and nVidia Attic examples) or excessively simple and specialized. Finding examples with a moderate amount of data, inclusive of the most common functions, can be challenging.
+While  is an abundance of high-quality openUSD sample scenes available online, many of them tend to be either overly complex and heavy (such as the AnimalLogic Lab and nVidia Attic examples) or excessively simple and specialized. Finding examples with a moderate amount of data, inclusive of the most common functions, can be challenging.
 
 Motivated by this gap, I designed this project to serve as a middle-ground reference for those looking to explore openUSD in a more approachable yet versatile context. 
 
